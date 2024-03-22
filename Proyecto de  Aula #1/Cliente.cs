@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_de__Aula__1
 {
-    internal class Cliente
+    public class Cliente
     {
 
         int cedula, estrato, metaAhorro, consumoEnergia, consumoAgua, promedioAgua,periodoDeConsumo;
