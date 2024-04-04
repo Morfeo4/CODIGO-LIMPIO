@@ -269,6 +269,38 @@ namespace Proyecto_de__Aula__1_Test1
                 Assert.AreEqual(expected, sw.ToString().Trim());
             }
         }
+
+        [TestMethod]
+        public void MayorConsumoDeAguaPorPeriodoDeConsumoTest()
+        {
+            
+            List<Cliente> listaClientes = new List<Cliente>
+                        {
+                            new Cliente { Cedula = 123456789, Nombre = "Juan", Apellido = "Perez", PeriodoDeConsumo = 1, ConsumoAgua = 50 },
+                            new Cliente { Cedula = 987654321, Nombre = "Maria", Apellido = "Gomez", PeriodoDeConsumo = 1, ConsumoAgua = 70 },
+                            new Cliente { Cedula = 456789123, Nombre = "Pedro", Apellido = "Martinez", PeriodoDeConsumo = 2, ConsumoAgua = 60 }
+                        };
+            ProgramaEPM.ListaClientes = listaClientes;
+
+           
+            StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            StringReader stringReader = new StringReader("1");
+            Console.SetIn(stringReader);
+
+           
+            ProgramaEPM.MayorConsumoDeAguaPorPeriodoDeConsumo();
+
+           
+            string consoleOutput = stringWriter.ToString();
+
+            Assert.IsTrue(consoleOutput.Contains("Cliente con mayor consumo de agua en el periodo 1:"));
+            Assert.IsTrue(consoleOutput.Contains("Cédula: 987654321"));
+            Assert.IsTrue(consoleOutput.Contains("Nombre: Maria"));
+            Assert.IsTrue(consoleOutput.Contains("Apellido: Gomez"));
+        }
+
     }
 }
 

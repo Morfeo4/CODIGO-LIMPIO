@@ -37,7 +37,8 @@ namespace Proyecto_de__Aula__1
             Console.WriteLine("9. Mostrar el estrato en el cual los clientes ahorraron la mayor cantidad de agua");
             Console.WriteLine("10. Mostrar el estrato con el mayor y menor consumo de energía");
             Console.WriteLine("11. Mostrar el valor total que los clientes le pagan a la empresa por concepto de energía y agua");
-            Console.WriteLine("12. Salir");
+            Console.WriteLine("12. Mostrar el mayor consumo de agua por periodo");
+            Console.WriteLine("13. Salir");
             Console.WriteLine("-----------------------------------------");
             Console.Write("Seleccione una opción: ");
         }
@@ -89,6 +90,10 @@ namespace Proyecto_de__Aula__1
                 MostrarValorTotalPagar();
             }
             else if (opcion == 12)
+            {
+                MayorConsumoDeAguaPorPeriodoDeConsumo();
+            }
+            else if (opcion == 13)
             {
                 Console.WriteLine("¡Hasta luego!");
             }
@@ -563,6 +568,41 @@ namespace Proyecto_de__Aula__1
             double totalValorServicios = totalValorEnergia + totalValorAgua;
             Console.WriteLine("El valor total que los clientes le pagan a la empresa por concepto de energía y agua es: " + totalValorServicios);
         }
+
+        public static void MayorConsumoDeAguaPorPeriodoDeConsumo()
+        {
+            double mayorConsumoPeriodo = 0;
+            Cliente clienteMayorConsumoPeriodo = null;
+
+            Console.WriteLine("Ingrese el periodo en el cual desea ver el mayor consumo de agua");
+            int periodoCliente = int.Parse(Console.ReadLine());
+
+
+
+            foreach (Cliente cliente in ListaClientes)
+            {
+                if (cliente.PeriodoDeConsumo == periodoCliente && cliente.ConsumoAgua > mayorConsumoPeriodo)
+                {
+                    mayorConsumoPeriodo = cliente.ConsumoAgua;
+                    clienteMayorConsumoPeriodo = cliente;
+                }
+            }
+
+            if (clienteMayorConsumoPeriodo != null)
+            {
+                Console.WriteLine("Cliente con mayor consumo de agua en el periodo " + periodoCliente + ":");
+                Console.WriteLine($"Cédula: {clienteMayorConsumoPeriodo.Cedula}");
+                Console.WriteLine($"Nombre: {clienteMayorConsumoPeriodo.Nombre}");
+                Console.WriteLine($"Apellido: {clienteMayorConsumoPeriodo.Apellido}");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró ningún cliente con consumo de agua en el periodo {periodoCliente}.");
+            }
+
+            Console.ReadLine();
+        }
+
 
     }
 }
