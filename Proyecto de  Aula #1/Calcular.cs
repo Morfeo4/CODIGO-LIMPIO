@@ -88,5 +88,18 @@ namespace Proyecto_de__Aula__1
             Console.WriteLine("El total de exceso de agua es: " + aguaMayorpromedio);
 
         }
+
+        public static void ContabilizarClientesMayorPromedioAgua()
+        {
+            double contCLientesMayorPromedio = 0;
+            foreach (Cliente cliente in ListaClientes)
+            {
+                if (cliente.ConsumoAgua > cliente.PromedioAgua)
+                {
+                    contCLientesMayorPromedio += 1;
+                }
+            }
+            Console.WriteLine("Los clientes que tuvieron un consumo de agua mayor al promedio fueron: " + contCLientesMayorPromedio);
+        }
     }
 }
